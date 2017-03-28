@@ -139,7 +139,8 @@ public class PostProject extends AppCompatActivity {
 //
 //
 //        System.out.println("project title is: " + project_title +"\n"+project_description + "\n" + teamSize + "\n" + fromDate + "\n" + toDate + "\n" + categories + "\n" + contactInfo);
-        new PostDataTask().execute("http://192.168.1.4:3000/api/project");
+        new PostDataTask().execute("http://128.61.1.235:3000/api/project");
+        new PutDataTask().execute("http://128.61.1.235:3000/api/user/58dad0881fe6c91aeef03958");
         Intent intent = new Intent(this,userProjectInfor.class);
         startActivity(intent);
     }
@@ -335,5 +336,102 @@ public class PostProject extends AppCompatActivity {
 
     }
 
+
+    class PutDataTask extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(PostProject.this);
+            progressDialog.setMessage("Updating data...");
+            progressDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                return putData(params[0]);
+            } catch (IOException ex) {
+                return "Network Error";
+            } catch (JSONException ex) {
+                return "Data Invalid";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            //mResult.setText(result);
+
+            if(progressDialog != null) {
+                progressDialog.dismiss();
+            }
+        }
+
+        private String putData(String urlPath) throws IOException, JSONException {
+
+            BufferedWriter bufferedWriter = null;
+            String result = null;
+
+            try {
+                JSONObject dataToSend = new JSONObject();
+//                dataToSend.put("username", "studentA");
+//                dataToSend.put("password", "123456D2");
+//                dataToSend.put("firstName", "appled2");
+//                dataToSend.put("lastName", "lappled2");
+//                dataToSend.put("ifinuniversity", "yes");
+//                dataToSend.put("university", "georgia insitute of technology");
+//                dataToSend.put("address", "222 northside dr");
+//                dataToSend.put("city", "atlanta");
+//                dataToSend.put("state", "ga");
+//                dataToSend.put("zip", "30318");
+//                dataToSend.put("email", "studentA@gmail.com");
+//                dataToSend.put("phone", "4444444444");
+//                ArrayList<String> a = new ArrayList<>();
+//                ArrayList<String> b = new ArrayList<>();
+                //dataToSend.put("joinedProject",);
+//                dataToSend.put("state", "ga");
+//                dataToSend.put("state", "ga");
+//                dataToSend.put("state", "ga");
+//                dataToSend.put("state", "ga");
+                String project_title = "";
+                EditText projectTitleET = (EditText)findViewById(R.id.project_title);
+                project_title = projectTitleET.getText().toString();//var store project title
+
+
+                dataToSend.put("postProject", project_title);
+                //b.add("cccc");
+                //b.add("ddddd");
+                //dataToSend.put("joinedProject", "cs 4475 ; cs 4466 project ");
+
+                URL url = new URL(urlPath);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setReadTimeout(10000);
+                urlConnection.setConnectTimeout(10000);
+                urlConnection.setRequestMethod("PUT");
+                urlConnection.setDoOutput(true);
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+                urlConnection.connect();
+
+                OutputStream outputStream = urlConnection.getOutputStream();
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+                bufferedWriter.write(dataToSend.toString());
+                bufferedWriter.flush();
+
+                if (urlConnection.getResponseCode() == 200) {
+                    return "update successful";
+                } else {
+                    return "update fail";
+                }
+            } finally {
+                if (bufferedWriter != null) {
+                    bufferedWriter.close();
+                }
+            }
+
+
+        }
+    }
 
 }
