@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Custm ListView</string>
+    <string-array name="titles">
+        <item>Health</item>
+        <item>Music</item>
+        <item>Sports</item>
+        <item>Photography</item>
+        <item>Chemistry</item>
+        <item>Math</item>
+        <item>Computer Science</item>
+        <item>Business</item>
+        <item>Education</item>
+    </string-array>
+    <string-array name="description">
+        <item>Health description</item>
+        <item>Music description</item>
+        <item>Sports description</item>
+        <item>Photography description</item>
+        <item>Chemistry description</item>
+        <item>Math description</item>
+        <item>Computer Science description</item>
+        <item>Business description</item>
+        <item>Education description</item>
+    </string-array>
+    <string name="title_activity_sign_in">signIn</string>
+    <string name="title_activity_user_project_infor">userProjectInfor</string>
+    <string name="title_activity_post_project">PostProject</string>
+</resources>

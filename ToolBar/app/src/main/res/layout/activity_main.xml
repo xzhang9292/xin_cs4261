@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lights"
+    tools:context="com.example.shuangke.toolbar.MainActivity">
+     <include layout="@layout/toolbar" android:id="@+id/toolbar"/>
+
+    <SearchView
+        android:id="@+id/searchview"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/onCampusProjects"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/holo_blue_bright"
+        android:text="On Campus Projects"
+        android:layout_above="@+id/rewardedProjects"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/rewardedProjects"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="19dp"
+        android:background="@android:color/holo_green_light"
+        android:text="Rewarded Project"
+        android:layout_above="@+id/ComputerScience"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/ComputerScience"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:text="Computer Science"
+        android:layout_marginBottom="7dp"
+        android:layout_above="@+id/bussiness"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/bussiness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:backgroundTint="?android:attr/textColorHighlight"
+        android:text="Bussiness"
+        android:layout_above="@+id/allCategories"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/allCategories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="83dp"
+        android:background="@android:color/holo_orange_light"
+        android:onClick="gotoAllCategoriesActivity"
+        android:text="All Categories"
+        android:layout_above="@+id/signin"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_toStartOf="@+id/ComputerScience"
+        android:text="Home"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in"
+        android:textSize="24sp"
+        android:layout_alignBaseline="@+id/home"
+        android:layout_alignBottom="@+id/home"
+        android:layout_toEndOf="@+id/home"
+        android:onClick="gotoSigninPage"/>
+
+    <Button
+        android:id="@+id/projects"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Projects"
+        android:textSize="24sp"
+        android:layout_alignBaseline="@+id/signin"
+        android:layout_alignBottom="@+id/signin"
+        android:layout_toEndOf="@+id/signin" />
+
+
+</RelativeLayout>
