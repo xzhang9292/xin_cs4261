@@ -54,13 +54,25 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="gotoPostProjectPage"
         android:text="Post a Project"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="12dp" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/joinedProject"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
-        android:onClick="gotoPostProjectPage"/>
+        android:onClick="logout"
+        android:text="Logout"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button2"
@@ -94,3 +106,4 @@
         android:textStyle="bold" />
 
 </RelativeLayout>
+

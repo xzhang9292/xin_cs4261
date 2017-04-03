@@ -139,8 +139,8 @@ public class PostProject extends AppCompatActivity {
 //
 //
 //        System.out.println("project title is: " + project_title +"\n"+project_description + "\n" + teamSize + "\n" + fromDate + "\n" + toDate + "\n" + categories + "\n" + contactInfo);
-        new PostDataTask().execute("http://128.61.1.235:3000/api/project");
-        new PutDataTask().execute("http://128.61.1.235:3000/api/user/58dad0881fe6c91aeef03958");
+        new PostDataTask().execute("http://128.61.9.190:3000/api/project");
+        new PutDataTask().execute("http://128.61.9.190:3000/api/user/58dad0881fe6c91aeef03958");
         Intent intent = new Intent(this,userProjectInfor.class);
         startActivity(intent);
     }

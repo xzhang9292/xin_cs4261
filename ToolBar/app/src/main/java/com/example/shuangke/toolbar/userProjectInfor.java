@@ -11,9 +11,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,14 +32,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class userProjectInfor extends AppCompatActivity {
-    String[] PostProjectTitles ={"CS 4261 \"Fee Split\"","CS 1332 \"short path finding\""};
+    String[] PostProjectTitles ={""};
     String[] JoinedProjectTitles = {"Classic Music online courses","CS4475 ZOO Escape","Africa Environment protection","Graph Theory","Numerical analysis","Cherrystone","Green Jade","Positive Impact","Hobby Finding"};
-
+    private Button buttlogout;
+    private FirebaseAuth fauth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new GetDataTask().execute("http://128.61.1.235:3000/api/user/58dad0881fe6c91aeef03958");
+        new GetDataTask().execute("http://128.61.9.190:3000/api/user/58dad0881fe6c91aeef03958");
         setContentView(R.layout.activity_user_project_infor);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,6 +73,12 @@ public class userProjectInfor extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        buttlogout = (Button) findViewById(R.id.logout);
+
+        fauth = FirebaseAuth.getInstance();
+
+        FirebaseUser usr = fauth.getCurrentUser();
     }
 
 
@@ -217,7 +228,12 @@ public class userProjectInfor extends AppCompatActivity {
             return a.getString("firstName");
         }
     }
+    public void logout(View v) {
+        fauth.signOut();
+        finish();
+        startActivity(new Intent(this,signIn.class));
 
+    }
 
 
     public void gotoHomePage(View view){
