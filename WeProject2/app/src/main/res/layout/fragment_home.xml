@@ -1,0 +1,153 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.shuangke.weproject2.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/search"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/sports"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/arts"
+
+                    android:layout_below="@+id/arts"
+                    android:layout_marginTop="36dp"
+                    android:onClick="gotosports"
+                    app:srcCompat="@drawable/sports" />
+
+                <ImageButton
+                    android:id="@+id/business"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="80dp"
+                    android:onClick="gotobusiness"
+                    app:srcCompat="@drawable/business" />
+
+                <ImageButton
+                    android:id="@+id/cs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/business"
+                    android:layout_marginEnd="7dp"
+                    android:onClick="gotocs"
+                    app:srcCompat="@drawable/cs" />
+
+                <ImageButton
+                    android:id="@+id/arts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/business"
+                    android:layout_below="@+id/business"
+                    android:layout_marginTop="37dp"
+                    android:onClick="gotoarts"
+                    app:srcCompat="@drawable/art" />
+
+                <ImageButton
+                    android:id="@+id/math"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/cs"
+                    android:layout_alignTop="@+id/arts"
+                    android:onClick="gotomath"
+                    app:srcCompat="@drawable/math" />
+
+                <ImageButton
+                    android:id="@+id/more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/math"
+                    android:layout_alignTop="@+id/sports"
+                    android:onClick="gotomore"
+                    app:srcCompat="@drawable/more" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/business"
+                    android:layout_below="@+id/business"
+                    android:layout_marginEnd="65dp"
+                    android:text="Business"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/cs"
+                    android:layout_below="@+id/cs"
+                    android:layout_marginStart="23dp"
+                    android:text="Computer Science"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/textView11"
+                    android:layout_alignStart="@+id/textView11"
+                    android:layout_below="@+id/arts"
+                    android:text="Arts"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/textView18"
+                    android:text="Math"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp"
+                    android:layout_alignEnd="@+id/imageButton" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/textView18"
+                    android:layout_alignTop="@+id/sports"
+                    android:layout_marginTop="153dp"
+                    android:text="Sports"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+        </ScrollView>
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="360dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="26dp"
+            android:background="?attr/colorButtonNormal"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+</FrameLayout>

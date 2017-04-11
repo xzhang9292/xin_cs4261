@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_postProject"
+            android:icon="@drawable/login"
+            android:title="Post A Project" />
+        <item android:id="@+id/nav_appliedProjects"
+            android:title="Applied Projects "
+            android:icon="@drawable/profile"/>
+        <item android:id="@+id/nav_joinedProject"
+            android:title="Joined Projects"
+            android:icon="@drawable/settings"/>
+        <item android:id="@+id/nav_postedProject"
+            android:title="Posted Projects"
+            android:icon="@drawable/logout"/>
+        <item android:id="@+id/nav_completeProject"
+            android:title="Completed Projects"
+            android:icon="@drawable/logout"/>
+        <item android:id="@+id/nav_profile"
+            android:title="My Profile"
+            android:icon="@drawable/profile"/>
+    </group>
+
+    <item android:title="Scocial">
+        <menu>
+            <item
+                android:title="Add to Group"
+                android:id="@+id/add_to_group"
+                android:icon="@drawable/addtogroup"
+                >
+            </item>
+
+            <item
+                android:title="Group"
+                android:id="@+id/id_group"
+                android:icon="@drawable/group"
+                >
+            </item>
+
+            <item
+                android:title="Share"
+                android:id="@+id/id_share"
+                android:icon="@drawable/share"
+                >
+            </item>
+        </menu>
+    </item>
+
+</menu>

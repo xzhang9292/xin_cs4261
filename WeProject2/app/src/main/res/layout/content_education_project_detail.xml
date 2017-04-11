@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.shuangke.weproject2.EducationProjectDetail"
+    tools:showIn="@layout/activity_education_project_detail">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="800dp">
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView4"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="34dp"
+                android:text="Include:  Product Packaging and Design Specialist Print Pre-production and color correction specialist Working with a wide range of media and using graphic design software Thinking creatively and developing new design concepts, graphics and layouts We are looking for a creative Graphic designer with extensive product packaging design skills, and up-to-date knowledge of product packaging layout software, and book printing pre-production.  You will work on a variety of products, including Gift Box Sets, Children's Books, websites, book covers, brochures, product packaging, corporate identity etc. and you will cooperate with our designers and sales team. Responsibilities:  Think creatively and develop new design concepts, graphics and layouts Prepare rough drafts and present your ideas Amend final designs to clients comments and gain full approval Work as part of a team with copywriters, designers, stylists, executives etc." />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/TextView_"
+                android:layout_below="@+id/TextView_"
+                android:layout_marginTop="42dp"
+                android:text="Requirement: "
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="11dp"
+                android:text="Description"
+                android:textColor="@android:color/background_dark"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/requirement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView8"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Packaging Design Skills, software knowledge, and pre-print production skills Proven graphic design for PACKAGING - for RETAIL DISPLAY experience Possession of creative flair, versatility, conceptual/visual ability and originality Ability to interact, communicate and present ideas Up to date with industry leading software and technologies (In Design, Illustrator, Dreamweaver, Photoshop etc) Highly proficient in all design aspects Professionalism regarding time, costs and deadlines"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/TextView_"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/description"
+                android:layout_below="@+id/description"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="26dp"
+                android:text="Reward Value: "
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/reward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/TextView_"
+                android:layout_alignBottom="@+id/TextView_"
+                android:layout_centerHorizontal="true"
+                android:text="300$"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <include
+        android:layout_height="wrap_content"
+        android:layout_width="450dp"
+        layout="@layout/toolbar_layout"
+        android:id="@+id/toolbar"></include>
+
+</RelativeLayout>

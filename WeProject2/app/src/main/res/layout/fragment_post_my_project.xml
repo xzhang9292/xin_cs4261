@@ -1,0 +1,309 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.shuangke.weproject2.PostMyProject">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="900dp">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="13dp"
+                android:text="Project Title:"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/projectTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/textView6"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="12dp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView6"
+                android:layout_below="@+id/projectTitle"
+                android:layout_marginTop="38dp"
+                android:text="Project Description:"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView7"
+                android:layout_alignTop="@+id/textView7"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/description"
+                android:layout_below="@+id/description"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="Requirements: "
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/teamSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/description"
+                android:layout_alignTop="@+id/textView9"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView9"
+                android:layout_below="@+id/teamSize"
+                android:layout_marginTop="23dp"
+                android:text="Posting Period:"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/fromDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView10"
+                android:layout_below="@+id/textView10"
+                android:layout_marginTop="32dp"
+                android:text='choose a "From" date'
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/toDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/fromDate"
+                android:layout_alignBottom="@+id/fromDate"
+                android:layout_toEndOf="@+id/business"
+                android:text='choose a "To" date'
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/fromDate"
+                android:layout_below="@+id/fromDate"
+                android:layout_marginTop="36dp"
+                android:text="Add Categories:"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/arts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView16"
+                android:layout_below="@+id/textView16"
+                android:layout_marginTop="12dp"
+                android:text="Arts"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/business"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/arts"
+                android:layout_alignBottom="@+id/arts"
+                android:layout_marginStart="18dp"
+                android:layout_toEndOf="@+id/textView6"
+                android:text="Business"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/biology"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/business"
+                android:layout_alignBottom="@+id/business"
+                android:layout_alignEnd="@+id/toDate"
+                android:layout_marginEnd="13dp"
+                android:text="Biology"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/cs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/arts"
+                android:layout_below="@+id/arts"
+                android:layout_marginTop="21dp"
+                android:text="Computer Science"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chemistry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/music"
+                android:layout_alignTop="@+id/cs"
+                android:text="Chemistry"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/education"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/cs"
+                android:layout_below="@+id/cs"
+                android:layout_marginTop="17dp"
+                android:text="Education"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/math"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/education"
+                android:layout_alignBottom="@+id/education"
+                android:layout_centerHorizontal="true"
+                android:text="Math"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/math"
+                android:layout_alignBottom="@+id/math"
+                android:layout_alignStart="@+id/biology"
+                android:text="Music"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/sports"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/education"
+                android:layout_below="@+id/education"
+                android:layout_marginTop="28dp"
+                android:text="Sports"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
+                android:text="Contact Information :"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp"
+                android:layout_below="@+id/reward"
+                android:layout_alignStart="@+id/textView12" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/chemistry"
+                android:layout_alignTop="@+id/textView21"
+                android:layout_marginTop="11dp"
+                android:ems="10"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/email"
+                android:layout_below="@+id/email"
+                android:layout_marginTop="11dp"
+                android:ems="10"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/email"
+                android:layout_alignEnd="@+id/sports"
+                android:text="email"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/phone"
+                android:layout_alignStart="@+id/textView25"
+                android:layout_marginBottom="7dp"
+                android:text="phone"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/music"
+                android:layout_below="@+id/phone"
+                android:layout_marginTop="50dp"
+                android:text="Post"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/sports"
+                android:layout_below="@+id/sports"
+                android:layout_marginTop="29dp"
+                android:text="Reward:"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/reward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:layout_below="@+id/textView12"
+                android:layout_alignEnd="@+id/business" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/reward"
+                android:layout_toEndOf="@+id/math"
+                android:text="$"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+    </ScrollView>
+</FrameLayout>
