@@ -1,5 +1,6 @@
 package com.example.shuangke.weproject2;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -36,6 +37,7 @@ public class HomePage extends AppCompatActivity {
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
             public boolean onNavigationItemSelected(MenuItem item){
+
                 switch (item.getItemId()){
                     case R.id.nav_home:
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -48,13 +50,10 @@ public class HomePage extends AppCompatActivity {
 
 
                     case R.id.nav_postProject:
-                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.main_container,new PostMyProject());
-                        fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("PostProject");
-                        item.setChecked(true);
-                        drawerLayout.closeDrawers();
+                        Intent intent = new Intent(HomePage.this, PostAProject.class);
+                        startActivity(intent);
                         break;
+
 
                     case R.id.nav_appliedProjects:
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();

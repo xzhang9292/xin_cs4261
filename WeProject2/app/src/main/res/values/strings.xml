@@ -41,5 +41,9 @@
     <string name="title_activity_math_project_detail">MathProjectDetail</string>
     <string name="title_activity_music_project_detail">MusicProjectDetail</string>
     <string name="title_activity_sports_project_detail">SportsProjectDetail</string>
+    <string name="app_label">Search</string>
+    <string name="search_hint">Search Me</string>
+    <string name="title_activity_post_aproject">PostAProject</string>
+    <string name="title_activity_applied_project">AppliedProject</string>
 
 </resources>

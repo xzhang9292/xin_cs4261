@@ -1,22 +1,22 @@
 package com.example.shuangke.weproject2;
 
-
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewGroup;
-import android.app.DatePickerDialog;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -38,18 +37,17 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.sql.Date;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class PostMyProject extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+public class PostAProject extends AppCompatActivity {
+    TextView from;
+    TextView to;
+    int year_y,month_y,day_y;
+    int year_x,month_x,day_x;
+    static final int DILOG_ID = 0;
+    static final int DILOG_ID2 = 1;
     private FirebaseAuth mAuth;
     public  View view;
     private DatabaseReference dbf;
@@ -57,66 +55,34 @@ public class PostMyProject extends DialogFragment implements DatePickerDialog.On
     private String num;
     private String uid;
     private String plist;
-    private String catagorieslist;
-    private String pTocat;  //proejct list to categories
-    private String categories = "";
-    public String fromDate;
-    public String toDate;
-    public boolean isfromDate = true;
 
-     public PostMyProject() {
-        // Required empty public constructor
-    }
+    private String categories = "";
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_post_my_project, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_post_aproject);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Post My Project");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        final Calendar cal = Calendar.getInstance();
+        year_x =cal.get(Calendar.YEAR);
+        month_x =cal.get(Calendar.MONTH);
+        day_x =cal.get(Calendar.DAY_OF_MONTH);
+
+        year_y =cal.get(Calendar.YEAR);
+        month_y =cal.get(Calendar.MONTH);
+        day_y =cal.get(Calendar.DAY_OF_MONTH);
+        showDialogOnButtonClick();
+
+        //add on
         mAuth = FirebaseAuth.getInstance();
-
-
-        TextView from = (TextView) view.findViewById(R.id.fromDate);
-
-
-        from.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                isfromDate = true;
-                DialogFragment picker = new PostMyProject();
-                picker.show(getFragmentManager(), "datePicker");
-            }
-        });
-
-
-
-
-        TextView to = (TextView) view.findViewById(R.id.toDate);
-        to.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-
-
-                isfromDate = false;
-                DialogFragment picker = new PostMyProject();
-                picker.show(getFragmentManager(), "datePicker");
-
-            }
-        });
-
-        // Inflate the layout for this fragment
-
-        //get value of total counts
         uid = mAuth.getCurrentUser().getEmail().toString();
         uid = uid.replace("@","");
         uid = uid.replace(".","");
         dbf = FirebaseDatabase.getInstance().getReference().child("user").child(uid).child("numcounts");
-
-
         dbf.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -128,7 +94,6 @@ public class PostMyProject extends DialogFragment implements DatePickerDialog.On
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
-        //dbf.setValue(Long.toString(Long.parseLong(num) + 1));
         userplist = FirebaseDatabase.getInstance().getReference().child("user").child(uid).child("projectlist");
         //get projectlist
         userplist.addValueEventListener(new ValueEventListener() {
@@ -144,61 +109,99 @@ public class PostMyProject extends DialogFragment implements DatePickerDialog.On
         });
 
 
-        Button post = (Button)view.findViewById(R.id.post);
-        post.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
 
-                String pname = "&"+uid + num;
-                new PostDataTask().execute("https://testfirebase-1fb45.firebaseio.com/projects/"+pname+".json");
-                dbf.setValue(Integer.toString(Integer.parseInt(num)+1));
-                userplist.setValue(plist+pname+";");
-                String[] catlist = categories.split(";");
-                String cat = "";
-                for(int i = 0; i < catlist.length;i++) {
-                    cat = catlist[i];
-                    System.out.println(cat + "--------------------------");
 
-                    new PostDataTask().execute("https://testfirebase-1fb45.firebaseio.com/categories/" + cat + "/" + pname + ".json");
 
+
+
+
+    }
+
+    public void showDialogOnButtonClick(){
+        from =(TextView) findViewById(R.id.fromDate);
+
+        from.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        showDialog(DILOG_ID);
+                    }
                 }
+        );
 
-                Intent intent = new Intent(getActivity(), HomePage.class);
-                startActivity(intent);
+        to=(TextView) findViewById(R.id.toDate);
+        to.setOnClickListener(
+                new View.OnClickListener(){
+                    public void onClick(View v){
+                        showDialog(DILOG_ID2);
+                    }
+                }
+        );
+    }
+    @Override
+    protected Dialog onCreateDialog(int id){
+        if(id == DILOG_ID){
+            return new DatePickerDialog(this,dpickerListenerFrom,year_x,month_x,day_x);
+        }
+        if(id == DILOG_ID2){
+            return new DatePickerDialog(this,dpickerListenerTo,year_y,month_y,day_y);
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener dpickerListenerFrom = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            year_x = year;
+            month_x = month + 1;
+            day_x = dayOfMonth;
+            String formattedDate = year_x +"/"+month_x + "/"+day_x;
+            from.setText(formattedDate);
+        }
+    };
+
+    private DatePickerDialog.OnDateSetListener dpickerListenerTo = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            year_y = year;
+            month_y = month + 1;
+            day_y = dayOfMonth;
+            String formattedDate = year_y +"/"+month_y + "/"+day_y;
+            to.setText(formattedDate);
+        }
+    };
+
+    public void gotoHome(View view) {
+        String pname = "&"+uid + num;
+        System.out.println(pname + "=====================================");
+        try {
+            String clist = (new PostDataTask().execute("https://testfirebase-1fb45.firebaseio.com/projects/" + pname + ".json")).get();
+            System.out.println(clist + "**************************");
+            String[] catlist = clist.split(";");
+            String cat = "";
+
+            for(int i = 0; i < catlist.length;i++) {
+                cat = catlist[i];
+                System.out.println(cat + "--------------------------");
+
+                new PostDataTask().execute("https://testfirebase-1fb45.firebaseio.com/categories/" + cat + "/" + pname + ".json");
+
             }
-        });
-        return view;
 
-    }
-
-
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        System.out.println("555555555555555555555555555555555555555555555555555555555555555");
-// Use the current date as the default date in the picker
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-
-// Create a new instance of DatePickerDialog and return it
-        return new DatePickerDialog(getActivity(),this, year, month, day);
-    }
-
-    public void onDateSet(DatePicker view, int year, int month, int day) {
-        System.out.println("66666666666666666666666666666666666666666666666666666666");
-        Calendar c = Calendar.getInstance();
-        c.set(year, month, day);
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = sdf.format(c.getTime());
-        if(isfromDate == true) {
-            ((TextView) getActivity().findViewById(R.id.fromDate)).setText(formattedDate);
-            fromDate = formattedDate;
+        } catch (InterruptedException e) {
+            e.getMessage();
+        } catch (ExecutionException e) {
+            e.getMessage();
         }
-        else{
-            ((TextView) getActivity().findViewById(R.id.toDate)).setText(formattedDate);
-            toDate = formattedDate;
-        }
+        dbf.setValue(Integer.toString(Integer.parseInt(num)+1));
+        userplist.setValue(plist+pname+";");
+
+
+
+
+        Intent intent = new Intent(PostAProject.this, HomePage.class);
+        startActivity(intent);
     }
+
     class PostDataTask extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
 
@@ -240,34 +243,37 @@ public class PostMyProject extends DialogFragment implements DatePickerDialog.On
             String fromDate = "";
             String toDate = "";
             String rewards;
+            fromDate = Integer.toString(month_x) + "/"+Integer.toString(day_x) + "/" +Integer.toString(year_x);
+            toDate = Integer.toString(month_y) + "/"+Integer.toString(day_y) + "/" +Integer.toString(year_y);
 
+            EditText projectTitleET = (EditText)findViewById(R.id.project_title);
+            EditText projectDescriptionET = (EditText)findViewById(R.id.project_description);
+            EditText requirement = (EditText)findViewById(R.id.requirement);
 
-            EditText projectTitleET = (EditText)view.findViewById(R.id.projectTitle);
-            EditText projectDescriptionET = (EditText)view.findViewById(R.id.description);
-            EditText requirement = (EditText)view.findViewById(R.id.teamSize);
+            //EditText rewardsET = (EditText)view.findViewById(R.id.reward);
 
-            EditText rewardsET = (EditText)view.findViewById(R.id.reward);
 
             project_title = projectTitleET.getText().toString();//var store project title
             project_description =projectDescriptionET.getText().toString();//var store project description
             require = requirement.getText().toString();
 
-            String rewardstr = rewardsET.getText().toString();
+            //String rewardstr = rewardsET.getText().toString();
+            String rewardstr = "145";
             if(rewardstr.equals("")){
                 rewards = "0";
             }
             else{
-                rewards = rewardsET.getText().toString();
+                rewards = rewardstr;
             }
 
 
 
-            CheckBox artsCK = (CheckBox)view.findViewById(R.id.arts);
-            CheckBox businessCK = (CheckBox)view.findViewById(R.id.business);
-            CheckBox biologyCK = (CheckBox)view.findViewById(R.id.biology);
-            CheckBox csCK = (CheckBox)view.findViewById(R.id.cs);
-            CheckBox chemistryCK = (CheckBox)view.findViewById(R.id.chemistry);
-            CheckBox educationCK = (CheckBox)view.findViewById(R.id.education);
+            CheckBox artsCK = (CheckBox)findViewById(R.id.arts);
+            CheckBox businessCK = (CheckBox)findViewById(R.id.business);
+            CheckBox biologyCK = (CheckBox)findViewById(R.id.biology);
+            CheckBox csCK = (CheckBox)findViewById(R.id.cs);
+            CheckBox chemistryCK = (CheckBox)findViewById(R.id.chemistry);
+            CheckBox educationCK = (CheckBox)findViewById(R.id.education);
             categories = "";
             if(artsCK.isChecked()){
                 categories = categories+"arts"+";";
@@ -295,10 +301,6 @@ public class PostMyProject extends DialogFragment implements DatePickerDialog.On
             System.out.println("project title is: " + project_title +"\n"+project_description + "\n" + require + "\n" + fromDate + "\n" + toDate + "\n" + categories + "\n");
 
 
-
-
-
-
             StringBuilder result = new StringBuilder();
             BufferedWriter bufferedWriter = null;
             BufferedReader bufferedReader = null;
@@ -309,10 +311,12 @@ public class PostMyProject extends DialogFragment implements DatePickerDialog.On
                 dataToSend.put("title", project_title);
                 dataToSend.put("description", project_description);
                 dataToSend.put("requirement", require);
-               // dataToSend.put("beginDate", fromDate);
-                //dataToSend.put("endDate", toDate);
+                dataToSend.put("beginDate", fromDate);
+                dataToSend.put("endDate", toDate);
                 dataToSend.put("catagories",categories);
                 dataToSend.put(	"award", rewards);
+                //dataToSend.put("fromdate", fromDate);
+                //dataToSend.put("todate", toDate);
                 String melist = "";
                 dataToSend.put("members",melist);
 
@@ -346,10 +350,10 @@ public class PostMyProject extends DialogFragment implements DatePickerDialog.On
             }
 
 
-            return result.toString();
+            return categories;
         }
 
     }
 
-}
 
+}

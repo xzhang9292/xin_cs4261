@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.shuangke.weproject2.PostAProject"
+    tools:showIn="@layout/activity_post_aproject">
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="1000dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Project Title:"
+                android:textSize="24sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/imageView13" />
+
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/imageView13"
+                android:layout_below="@+id/textView34"
+                android:layout_marginTop="16dp"
+                app:srcCompat="@drawable/fill" />
+
+            <EditText
+                android:id="@+id/project_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/imageView14"
+                android:layout_alignStart="@+id/imageView14"
+                android:layout_alignTop="@+id/imageView14"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView35"
+                android:layout_below="@+id/imageView13"
+                android:layout_marginTop="30dp"
+                android:text="Project Description:"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="49dp"
+                app:srcCompat="@drawable/fill" />
+
+            <EditText
+                android:id="@+id/project_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/textView34"
+                android:layout_alignEnd="@+id/imageView13"
+                android:layout_alignStart="@+id/imageView13"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/textView35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView31"
+                android:layout_below="@+id/imageView14"
+                android:layout_marginTop="28dp"
+                android:text="Project Requirements:"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/imageView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/requirement"
+                android:layout_alignStart="@+id/requirement"
+                app:srcCompat="@drawable/fill" />
+
+            <EditText
+                android:id="@+id/requirement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/imageView14"
+                android:layout_alignStart="@+id/imageView14"
+                android:layout_below="@+id/textView35"
+                android:layout_marginTop="22dp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView35"
+                android:layout_below="@+id/imageView16"
+                android:layout_marginTop="38dp"
+                android:text="Team Size:"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/imageView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/team_size"
+                android:layout_alignTop="@+id/team_size"
+                app:srcCompat="@drawable/fill" />
+
+            <EditText
+                android:id="@+id/team_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/imageView16"
+                android:layout_alignStart="@+id/imageView16"
+                android:layout_below="@+id/textView36"
+                android:layout_marginTop="13dp"
+                android:ems="10"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textView37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView36"
+                android:layout_below="@+id/imageView18"
+                android:layout_marginTop="14dp"
+                android:text="Posting Period:"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/toDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='choose a "To" date'
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:layout_alignBaseline="@+id/fromDate"
+                android:layout_alignBottom="@+id/fromDate"
+                android:layout_alignEnd="@+id/imageView18" />
+
+            <TextView
+                android:id="@+id/textView40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/fromDate"
+                android:layout_below="@+id/textView37"
+                android:layout_marginTop="24dp"
+                android:text="from:"
+                android:textColor="@color/common_google_signin_btn_text_light_default" />
+
+            <TextView
+                android:id="@+id/fromDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:text='choose a "From" date'
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:layout_below="@+id/textView40"
+                android:layout_alignEnd="@+id/textView42" />
+
+            <TextView
+                android:id="@+id/textView41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView40"
+                android:layout_alignBottom="@+id/textView40"
+                android:layout_toEndOf="@+id/textView34"
+                android:text="to:" />
+
+            <TextView
+                android:id="@+id/textView42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:text="Add Categories:"
+                android:textSize="24sp"
+                android:layout_below="@+id/fromDate"
+                android:layout_alignStart="@+id/arts" />
+
+            <CheckBox
+                android:id="@+id/business"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/toDate"
+                android:layout_alignTop="@+id/arts"
+                android:text="Business"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/arts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/imageView18"
+                android:layout_below="@+id/textView42"
+                android:layout_marginTop="15dp"
+                android:text="Arts"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/biology"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/arts"
+                android:layout_below="@+id/arts"
+                android:layout_marginTop="25dp"
+                android:text="Biology"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chemistry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/biology"
+                android:layout_alignBottom="@+id/biology"
+                android:layout_alignStart="@+id/business"
+                android:text="Chemistry"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/education"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/biology"
+                android:layout_below="@+id/biology"
+                android:layout_marginTop="25dp"
+                android:text="Education"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/math"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/education"
+                android:layout_alignBottom="@+id/education"
+                android:layout_alignStart="@+id/chemistry"
+                android:text="Math"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/education"
+                android:layout_below="@+id/education"
+                android:layout_marginTop="18dp"
+                android:text="Music"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/sports"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/music"
+                android:layout_alignBottom="@+id/music"
+                android:layout_alignStart="@+id/math"
+                android:text="Sports"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/cs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Computer Science"
+                android:textSize="18sp"
+                android:layout_below="@+id/music"
+                android:layout_alignStart="@+id/music"
+                android:layout_marginTop="16dp" />
+
+            <Button
+                android:id="@+id/post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="gotoHome"
+                android:text="Post"
+                android:layout_below="@+id/cs"
+                android:layout_alignEnd="@+id/imageView18" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
