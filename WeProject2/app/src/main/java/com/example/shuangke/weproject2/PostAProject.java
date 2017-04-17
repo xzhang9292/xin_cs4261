@@ -48,6 +48,7 @@ public class PostAProject extends AppCompatActivity {
     int year_x,month_x,day_x;
     static final int DILOG_ID = 0;
     static final int DILOG_ID2 = 1;
+
     private FirebaseAuth mAuth;
     public  View view;
     private DatabaseReference dbf;
@@ -55,8 +56,12 @@ public class PostAProject extends AppCompatActivity {
     private String num;
     private String uid;
     private String plist;
-
+    private String catagorieslist;
+    private String pTocat;  //proejct list to categories
     private String categories = "";
+    public String fromDate;
+    public String toDate;
+    public boolean isfromDate = true;
 
 
     @Override
@@ -77,7 +82,6 @@ public class PostAProject extends AppCompatActivity {
         day_y =cal.get(Calendar.DAY_OF_MONTH);
         showDialogOnButtonClick();
 
-        //add on
         mAuth = FirebaseAuth.getInstance();
         uid = mAuth.getCurrentUser().getEmail().toString();
         uid = uid.replace("@","");
@@ -107,12 +111,6 @@ public class PostAProject extends AppCompatActivity {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
-
-
-
-
-
-
 
 
     }
@@ -172,16 +170,12 @@ public class PostAProject extends AppCompatActivity {
 
     public void gotoHome(View view) {
         String pname = "&"+uid + num;
-        System.out.println(pname + "=====================================");
         try {
             String clist = (new PostDataTask().execute("https://testfirebase-1fb45.firebaseio.com/projects/" + pname + ".json")).get();
-            System.out.println(clist + "**************************");
             String[] catlist = clist.split(";");
             String cat = "";
-
             for(int i = 0; i < catlist.length;i++) {
                 cat = catlist[i];
-                System.out.println(cat + "--------------------------");
 
                 new PostDataTask().execute("https://testfirebase-1fb45.firebaseio.com/categories/" + cat + "/" + pname + ".json");
 
@@ -194,8 +188,6 @@ public class PostAProject extends AppCompatActivity {
         }
         dbf.setValue(Integer.toString(Integer.parseInt(num)+1));
         userplist.setValue(plist+pname+";");
-
-
 
 
         Intent intent = new Intent(PostAProject.this, HomePage.class);
@@ -250,15 +242,14 @@ public class PostAProject extends AppCompatActivity {
             EditText projectDescriptionET = (EditText)findViewById(R.id.project_description);
             EditText requirement = (EditText)findViewById(R.id.requirement);
 
-            //EditText rewardsET = (EditText)view.findViewById(R.id.reward);
+            EditText rewardsET = (EditText)findViewById(R.id.reward);
 
 
             project_title = projectTitleET.getText().toString();//var store project title
             project_description =projectDescriptionET.getText().toString();//var store project description
             require = requirement.getText().toString();
 
-            //String rewardstr = rewardsET.getText().toString();
-            String rewardstr = "145";
+            String rewardstr = rewardsET.getText().toString();
             if(rewardstr.equals("")){
                 rewards = "0";
             }
@@ -274,6 +265,10 @@ public class PostAProject extends AppCompatActivity {
             CheckBox csCK = (CheckBox)findViewById(R.id.cs);
             CheckBox chemistryCK = (CheckBox)findViewById(R.id.chemistry);
             CheckBox educationCK = (CheckBox)findViewById(R.id.education);
+            CheckBox sportsCK = (CheckBox)findViewById(R.id.sports);
+            CheckBox mathCK = (CheckBox)findViewById(R.id.math);
+
+
             categories = "";
             if(artsCK.isChecked()){
                 categories = categories+"arts"+";";
@@ -296,6 +291,12 @@ public class PostAProject extends AppCompatActivity {
             if(educationCK.isChecked()){
                 categories = categories+"education"+";";
 
+            }
+            if(sportsCK.isChecked()) {
+                categories = categories + "sports";
+            }
+            if(mathCK.isChecked()) {
+                categories = categories + "math";
             }
 
             System.out.println("project title is: " + project_title +"\n"+project_description + "\n" + require + "\n" + fromDate + "\n" + toDate + "\n" + categories + "\n");
@@ -354,6 +355,4 @@ public class PostAProject extends AppCompatActivity {
         }
 
     }
-
-
 }

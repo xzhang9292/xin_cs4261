@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.shuangke.weproject2.ComputerScienceProjectList"
+    tools:context="com.example.shuangke.weproject2.ChemistryProjectList"
     tools:showIn="@layout/activity_computer_science_project_list">
-    <include
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        layout="@layout/toolbar_layout"></include>
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="85dp" />
+
+    <include
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        layout="@layout/toolbar_layout"></include>
 </android.support.constraint.ConstraintLayout>

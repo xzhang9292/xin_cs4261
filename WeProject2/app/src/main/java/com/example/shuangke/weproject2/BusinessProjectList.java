@@ -217,7 +217,7 @@ public class BusinessProjectList extends AppCompatActivity {
         for(int i = 1; i < oblist.length;i++){
             item = oblist[i];
             int indexrew = item.indexOf("award");
-            int end = item.indexOf("catagories");
+            int end = item.indexOf("beginDate");
             String sub = item.substring(indexrew,end);
             int num = Integer.parseInt(sub.replaceAll("[\\D]", ""));
             rewards.add(Integer.toString(num)+"$");

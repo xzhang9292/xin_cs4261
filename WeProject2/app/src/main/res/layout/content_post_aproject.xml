@@ -19,7 +19,7 @@
         <RelativeLayout
 
             android:layout_width="match_parent"
-            android:layout_height="1000dp"
+            android:layout_height="1200dp"
             android:layout_marginTop="10dp">
 
             <TextView
@@ -47,8 +47,10 @@
                 android:layout_alignEnd="@+id/imageView14"
                 android:layout_alignStart="@+id/imageView14"
                 android:layout_alignTop="@+id/imageView14"
+                android:background="@android:color/transparent"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:layout_above="@+id/textView35" />
 
             <TextView
                 android:id="@+id/textView34"
@@ -74,10 +76,13 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/textView34"
                 android:layout_alignEnd="@+id/imageView13"
-                android:layout_alignStart="@+id/imageView13"
+                android:background="@android:color/transparent"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:layout_alignTop="@+id/imageView13"
+                android:layout_toEndOf="@+id/textView40"
+                android:layout_alignStart="@+id/imageView13" />
 
             <TextView
                 android:id="@+id/textView35"
@@ -100,52 +105,29 @@
             <EditText
                 android:id="@+id/requirement"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_alignEnd="@+id/imageView14"
                 android:layout_alignStart="@+id/imageView14"
                 android:layout_below="@+id/textView35"
                 android:layout_marginTop="22dp"
+                android:background="@android:color/transparent"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
-            <TextView
-                android:id="@+id/textView36"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/textView35"
-                android:layout_below="@+id/imageView16"
-                android:layout_marginTop="38dp"
-                android:text="Team Size:"
-                android:textSize="24sp" />
 
-            <ImageView
-                android:id="@+id/imageView18"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/team_size"
-                android:layout_alignTop="@+id/team_size"
-                app:srcCompat="@drawable/fill" />
 
-            <EditText
-                android:id="@+id/team_size"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/imageView16"
-                android:layout_alignStart="@+id/imageView16"
-                android:layout_below="@+id/textView36"
-                android:layout_marginTop="13dp"
-                android:ems="10"
-                android:inputType="number" />
+
+
 
             <TextView
                 android:id="@+id/textView37"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/textView36"
-                android:layout_below="@+id/imageView18"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="29dp"
                 android:text="Posting Period:"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:layout_below="@+id/imageView16"
+                android:layout_alignStart="@+id/imageView16" />
 
             <TextView
                 android:id="@+id/toDate"
@@ -156,7 +138,7 @@
                 android:textSize="18sp"
                 android:layout_alignBaseline="@+id/fromDate"
                 android:layout_alignBottom="@+id/fromDate"
-                android:layout_alignEnd="@+id/imageView18" />
+                android:layout_alignEnd="@+id/imageView5" />
 
             <TextView
                 android:id="@+id/textView40"
@@ -172,12 +154,12 @@
                 android:id="@+id/fromDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="27dp"
                 android:text='choose a "From" date'
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 android:layout_below="@+id/textView40"
-                android:layout_alignEnd="@+id/textView42" />
+                android:layout_alignStart="@+id/textView37" />
 
             <TextView
                 android:id="@+id/textView41"
@@ -192,17 +174,17 @@
                 android:id="@+id/textView42"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="44dp"
-                android:text="Add Categories:"
-                android:textSize="24sp"
+                android:layout_alignStart="@+id/textView37"
                 android:layout_below="@+id/fromDate"
-                android:layout_alignStart="@+id/arts" />
+                android:layout_marginTop="30dp"
+                android:text="Add Categories:"
+                android:textSize="24sp" />
 
             <CheckBox
                 android:id="@+id/business"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/toDate"
+                android:layout_alignStart="@+id/textView41"
                 android:layout_alignTop="@+id/arts"
                 android:text="Business"
                 android:textSize="18sp" />
@@ -211,11 +193,11 @@
                 android:id="@+id/arts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/imageView18"
-                android:layout_below="@+id/textView42"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="18dp"
                 android:text="Arts"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_below="@+id/textView42"
+                android:layout_alignStart="@+id/textView42" />
 
             <CheckBox
                 android:id="@+id/biology"
@@ -281,20 +263,61 @@
                 android:id="@+id/cs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Computer Science"
-                android:textSize="18sp"
-                android:layout_below="@+id/music"
                 android:layout_alignStart="@+id/music"
-                android:layout_marginTop="16dp" />
+                android:layout_below="@+id/music"
+                android:layout_marginTop="16dp"
+                android:text="Computer Science"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView42"
+                android:layout_below="@+id/cs"
+                android:layout_marginTop="28dp"
+                android:text="Reward:"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/fill"
+                android:layout_alignTop="@+id/reward"
+                android:layout_alignStart="@+id/reward" />
+
+            <EditText
+                android:id="@+id/reward"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignEnd="@+id/imageView16"
+                android:layout_alignStart="@+id/cs"
+                android:layout_below="@+id/textView14"
+                android:layout_marginTop="12dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/reward"
+                android:layout_alignBottom="@+id/reward"
+                android:layout_alignEnd="@+id/reward"
+                android:text="$"
+                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/post"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView5"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="53dp"
                 android:onClick="gotoHome"
-                android:text="Post"
-                android:layout_below="@+id/cs"
-                android:layout_alignEnd="@+id/imageView18" />
+                android:text="Post" />
 
         </RelativeLayout>
     </ScrollView>

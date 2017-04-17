@@ -33,6 +33,7 @@ public class ComputerScienceProjectList extends AppCompatActivity {
     ArrayList<String> plist;
     ArrayList<String> TITLES;
     ArrayList<String> REWARD;
+    ArrayList<String> Date;
 
 
     @Override
@@ -52,9 +53,6 @@ public class ComputerScienceProjectList extends AppCompatActivity {
         ListView listView =(ListView)findViewById(R.id.listView);
         CustomAdapter customAdapter = new CustomAdapter();
         listView.setAdapter(customAdapter);
-
-
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
@@ -95,10 +93,10 @@ public class ComputerScienceProjectList extends AppCompatActivity {
             view = getLayoutInflater().inflate(R.layout.customlayoutprojectlist,null);
             TextView textView_title =(TextView)view.findViewById(R.id.project_title);
             TextView textView_reward =(TextView)view.findViewById(R.id.TextView_);
-            //TextView textView_date =(TextView)view.findViewById(R.id.date);
-            textView_title.setText(TITLES.get(position));
+            TextView textView_date =(TextView)view.findViewById(R.id.date);
+            textView_title.setText("Title:  "+TITLES.get(position));
             textView_reward.setText("Reward value:" + REWARD.get(position));
-            //textView_date.setText("Starting date:" + DATE.get(position));
+            textView_date.append(Date.get(position));
             return view;
         }
     }
@@ -166,8 +164,10 @@ public class ComputerScienceProjectList extends AppCompatActivity {
             }
 
             String[] oblist = out.split("&");
+            //System.out.println(oblist[1] + "==================================");
             TITLES = parseobjects(oblist);
             REWARD = parseRewards(oblist);
+            Date = parseDate(oblist);
             return out;
         }
     }
@@ -197,14 +197,31 @@ public class ComputerScienceProjectList extends AppCompatActivity {
         for(int i = 1; i < oblist.length;i++){
             item = oblist[i];
             int indexrew = item.indexOf("award");
-            int end = item.indexOf("catagories");
+            int end = item.indexOf("beginDate");
             String sub = item.substring(indexrew,end);
             int num = Integer.parseInt(sub.replaceAll("[\\D]", ""));
-            rewards.add(Integer.toString(num)+"$");
+            rewards.add("  "+"$"+Integer.toString(num));
 
         }
         return rewards;
 
+    }
+
+    private ArrayList<String> parseDate(String[] oblist) {
+        String item;
+        ArrayList<String> dates = new ArrayList<>();
+        for(int i = 1; i < oblist.length;i++){
+            item = oblist[i];
+            int indexrew = item.indexOf("beginDate");
+            int end = item.indexOf("catagories");
+            String fdate = item.substring(indexrew + 12,end - 3);
+            int indexend = item.indexOf("endDate");
+            int enddate = item.indexOf("members");
+            String ldate = item.substring(indexend + 10, enddate - 3);
+            dates.add(fdate + "   to   " + ldate);
+
+        }
+        return dates;
     }
 
 

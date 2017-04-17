@@ -1,7 +1,6 @@
 package com.example.shuangke.weproject2;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,11 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 
@@ -28,7 +23,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class ComputerScienceProjectDetail extends AppCompatActivity {
+public class AppliedProjectDetail extends AppCompatActivity {
+
     private FirebaseAuth mAuth;
     private DatabaseReference userplist;
     private String decriptionData;
@@ -42,67 +38,27 @@ public class ComputerScienceProjectDetail extends AppCompatActivity {
     private String pid;
     private String emailadd;
     private String ptitle;
-    private String ps;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_computer_science_project_detail);
+        setContentView(R.layout.activity_applied_project_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Project Details");
+        getSupportActionBar().setTitle("Applied Projects Details");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         decriptionData = "";
         requirementData = "";
-
         int position = getIntent().getIntExtra("position",0);
         final ArrayList<String> plist = getIntent().getStringArrayListExtra("plist");
         ptitle = getIntent().getStringExtra("ptitle");
-        pid = "&"+ plist.get(position);
+        pid = plist.get(position);
         description = (TextView)findViewById(R.id.description);
         reward = (TextView) findViewById(R.id.reward);
         requirement = (TextView) findViewById(R.id.requirement);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
-
-        mAuth = FirebaseAuth.getInstance();
-        uid = mAuth.getCurrentUser().getEmail().toString();
-        uid = uid.replace("@","");
-        uid = uid.replace(".","");
-        userplist = FirebaseDatabase.getInstance().getReference().child("user").child(uid).child("appliedProject");
-        //get projectlist
-        userplist.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ps = dataSnapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getCode());
-            }
-        });
-
-
-
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                userplist.setValue(ps + pid + ";");
-                String[] to = {emailadd};
-                String subject = "Project Join Requst From WeProject";
-                String message = "I want to join your project with title:" + ptitle;
-
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_EMAIL,to);
-                intent.putExtra(Intent.EXTRA_SUBJECT,subject);
-                intent.putExtra(Intent.EXTRA_TEXT,message);
-                intent.setType("message/rfc882");
-                startActivity(Intent.createChooser(intent, "Select Email"));
-            }
-        });
-
         new GetDataTask().execute("https://testfirebase-1fb45.firebaseio.com/projects/"+pid+".json");
 
     }
@@ -114,7 +70,7 @@ public class ComputerScienceProjectDetail extends AppCompatActivity {
         protected void onPreExecute() {
 
             super.onPreExecute();
-            progressDialog = new ProgressDialog(ComputerScienceProjectDetail.this);
+            progressDialog = new ProgressDialog(AppliedProjectDetail.this);
             progressDialog.setMessage("loading data...");
             progressDialog.show();
         }
@@ -167,7 +123,6 @@ public class ComputerScienceProjectDetail extends AppCompatActivity {
                     bufferedReader.close();
                 }
             }
-            System.out.print(out + "-------------------------------------");
             int dindex = out.indexOf("description");
             int dindex_end = out.indexOf("endDate");
             decriptionData = decriptionData + out.substring(dindex + 14,dindex_end-3);
@@ -184,9 +139,14 @@ public class ComputerScienceProjectDetail extends AppCompatActivity {
             int indexoend = out.indexOf("requirement");
             emailadd = out.substring(indexo + 7, indexoend - 3);
             System.out.println(emailadd+"------------------------");
+            int mindex = out.indexOf("members");
+            int mendindex = out.indexOf("owner");
+
+            //System.out.println(members + "++++++++++++++");
 
             return out;
         }
     }
+
 
 }

@@ -45,5 +45,13 @@
     <string name="search_hint">Search Me</string>
     <string name="title_activity_post_aproject">PostAProject</string>
     <string name="title_activity_applied_project">AppliedProject</string>
+    <string name="title_activity_applied_project_detail">AppliedProjectDetail</string>
+    <string name="title_activity_joined_project">JoinedProject</string>
+    <string name="title_activity_joined_project_detail">JoinedProjectDetail</string>
+    <string name="title_activity_posted_project">PostedProject</string>
+    <string name="title_activity_posted_project_detail">PostedProjectDetail</string>
+    <string name="title_activity_edit_posted_project">EditPostedProject</string>
+    <string name="title_activity_complete_project">CompleteProject</string>
+    <string name="title_activity_complete_project_detail">CompleteProjectDetail</string>
 
 </resources>

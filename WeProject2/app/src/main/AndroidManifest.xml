@@ -217,6 +217,78 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.shuangke.weproject2.HomePage" />
         </activity>
+        <activity
+            android:name=".AppliedProjectDetail"
+            android:label="@string/title_activity_applied_project_detail"
+            android:parentActivityName=".AppliedProject"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.shuangke.weproject2.AppliedProject" />
+        </activity>
+        <activity
+            android:name=".JoinedProject"
+            android:label="@string/title_activity_joined_project"
+            android:parentActivityName=".HomePage"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.shuangke.weproject2.HomePage" />
+        </activity>
+        <activity
+            android:name=".JoinedProjectDetail"
+            android:label="@string/title_activity_joined_project_detail"
+            android:parentActivityName=".JoinedProject"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.shuangke.weproject2.JoinedProject" />
+        </activity>
+        <activity
+            android:name=".PostedProject"
+            android:label="@string/title_activity_posted_project"
+            android:parentActivityName=".HomePage"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.shuangke.weproject2.HomePage" />
+        </activity>
+        <activity
+            android:name=".PostedProjectDetail"
+            android:label="@string/title_activity_posted_project_detail"
+            android:parentActivityName=".PostedProject"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.shuangke.weproject2.PostedProject" />
+        </activity>
+        <activity
+            android:name=".EditPostedProject"
+            android:label="@string/title_activity_edit_posted_project"
+            android:parentActivityName=".PostedProjectDetail"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.shuangke.weproject2.PostedProjectDetail" />
+        </activity>
+        <activity
+            android:name=".CompleteProject"
+            android:label="@string/title_activity_complete_project"
+            android:parentActivityName=".HomePage"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.shuangke.weproject2.HomePage" />
+        </activity>
+        <activity
+            android:name=".CompleteProjectDetail"
+            android:label="@string/title_activity_complete_project_detail"
+            android:parentActivityName=".CompleteProject"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.shuangke.weproject2.CompleteProject" />
+        </activity>
     </application>
 
 </manifest>

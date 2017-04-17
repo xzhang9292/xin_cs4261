@@ -37,7 +37,7 @@ public class HomePage extends AppCompatActivity {
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
             public boolean onNavigationItemSelected(MenuItem item){
-
+                Intent intent;
                 switch (item.getItemId()){
                     case R.id.nav_home:
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -50,49 +50,33 @@ public class HomePage extends AppCompatActivity {
 
 
                     case R.id.nav_postProject:
-                        Intent intent = new Intent(HomePage.this, PostAProject.class);
+                        intent = new Intent(HomePage.this, PostAProject.class);
                         startActivity(intent);
                         break;
 
 
                     case R.id.nav_appliedProjects:
-                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.main_container,new AppliedProjectFragment());
-                        fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("Projects in Applying Process");
-                        item.setChecked(true);
-                        drawerLayout.closeDrawers();
+                        intent = new Intent(HomePage.this, AppliedProject.class);
+                        startActivity(intent);
                         break;
                     case R.id.nav_joinedProject:
-                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.main_container,new JoinedProjectFragment());
-                        fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("Joined Projects");
-                        item.setChecked(true);
-                        drawerLayout.closeDrawers();
+                        intent = new Intent(HomePage.this, JoinedProject.class);
+                        startActivity(intent);
                         break;
                     case R.id.nav_postedProject:
-                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.main_container,new PostedProjectFragment());
-                        fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("Posted Projects");
-                        item.setChecked(true);
-                        drawerLayout.closeDrawers();
+                        intent = new Intent(HomePage.this, PostedProject.class);
+                        startActivity(intent);
                         break;
                     case R.id.nav_completeProject:
-                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.main_container,new CompleteProjectFragment());
-                        fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("Completed Projects");
-                        item.setChecked(true);
-                        drawerLayout.closeDrawers();
+                        intent = new Intent(HomePage.this,CompleteProject.class);
+                        startActivity(intent);
                         break;
 
                     case R.id.nav_profile:
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.main_container,new My_Account());
                         fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("Profile");
+                        getSupportActionBar().setTitle("Log out");
                         item.setChecked(true);
                         drawerLayout.closeDrawers();
                         break;

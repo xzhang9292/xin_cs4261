@@ -16,7 +16,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 
@@ -29,11 +33,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class AppliedProject extends AppCompatActivity {
-
-    String[] TITLES ={"Applied Project1","Biology Project2","Arts Project3","Arts Project4","Arts Project5","Arts Project6","Arts Project7","Arts Project8","Arts Project9"};
-    String[] REWARD ={"1000$","2000$","3000$","4000$","5000$","6000$","7000$","8000$","9000$"};
-    String[] DATE ={"From 2016/4/6","From 2017/4/6","From 2018/4/6","From 2019/4/6","From 2020/4/6","From 2021/4/6","From 2022/4/6","From 2023/4/6","From 2024/4/6"};
+public class PostedProject extends AppCompatActivity {
 
     private String postedlist;
     private FirebaseAuth mAuth;
@@ -46,21 +46,20 @@ public class AppliedProject extends AppCompatActivity {
     private String[] listp;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_applied_project);
+        setContentView(R.layout.activity_posted_project);
 
         titles = new ArrayList<>();
         rewards = new ArrayList<>();
         dates = new ArrayList<>();
         postedlist = "";
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Applied Projects");
+        getSupportActionBar().setTitle("Posted Projects");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         mAuth = FirebaseAuth.getInstance();
         uid = mAuth.getCurrentUser().getEmail().toString();
@@ -68,7 +67,7 @@ public class AppliedProject extends AppCompatActivity {
         uid = uid.replace(".","");
 
         try {
-            outlist = new GetDataTask2().execute("https://testfirebase-1fb45.firebaseio.com/user/" + uid+"/appliedProject.json").get();
+            outlist = new GetDataTask2().execute("https://testfirebase-1fb45.firebaseio.com/user/" + uid+"/projectlist.json").get();
             outlist = outlist.replace("\"","");
             listp = outlist.split(";");
             for (String project : listp) {
@@ -82,15 +81,9 @@ public class AppliedProject extends AppCompatActivity {
             e.getMessage();
         }
 
-
-
-
-
-
         ListView listView =(ListView)findViewById(R.id.listView);
-       CustomAdapter customAdapter = new CustomAdapter();
+        CustomAdapter customAdapter = new CustomAdapter();
         listView.setAdapter(customAdapter);
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
@@ -98,15 +91,16 @@ public class AppliedProject extends AppCompatActivity {
                 for(String s:listp) {
                     alist.add(s);
                 }
-                Intent intent = new Intent(view.getContext(),AppliedProjectDetail.class);
+
+                Intent intent = new Intent(view.getContext(),PostedProjectDetail.class);
                 intent.putExtra("position",position);
                 intent.putExtra("ptitle",titles.get(position));
                 intent.putStringArrayListExtra("plist",alist);
                 startActivityForResult(intent, position);
-
-
             }
         });
+
+
     }
 
     class CustomAdapter extends BaseAdapter {
@@ -133,12 +127,13 @@ public class AppliedProject extends AppCompatActivity {
             TextView textView_title =(TextView)view.findViewById(R.id.project_title);
             TextView textView_reward =(TextView)view.findViewById(R.id.TextView_);
             TextView textView_date =(TextView)view.findViewById(R.id.date);
-            textView_title.setText("Title:  "+ titles.get(position));
+            textView_title.setText("Title:  "+titles.get(position));
             textView_reward.setText("Reward value:" + rewards.get(position));
-            textView_date.setText("Starting date:" + dates.get(position));
+            textView_date.setText("Period:" + dates.get(position));
             return view;
         }
     }
+
 
     class GetDataTask extends AsyncTask<String,Void,String> {
 
@@ -147,7 +142,7 @@ public class AppliedProject extends AppCompatActivity {
         protected void onPreExecute() {
 
             super.onPreExecute();
-            progressDialog = new ProgressDialog(AppliedProject.this);
+            progressDialog = new ProgressDialog(PostedProject.this);
             progressDialog.setMessage("loading data...");
             progressDialog.show();
         }
@@ -200,22 +195,24 @@ public class AppliedProject extends AppCompatActivity {
                     bufferedReader.close();
                 }
             }
-            int dindex = out.indexOf("description");
-            int dindex_end = out.indexOf("endDate");
-            titles.add(out.substring(dindex + 14,dindex_end-3));
-            int rindex = out.indexOf("award");
-            int rindex_end = out.indexOf("beginDate");
-            String sub = out.substring(rindex,rindex_end);
-            int num = Integer.parseInt(sub.replaceAll("[\\D]", ""));
-            rewards.add(" $" + Integer.toString(num));
-            int indexrew = out.indexOf("beginDate");
-            int end = out.indexOf("catagories");
-            String fdate = out.substring(indexrew + 12,end - 3);
-            int indexend = out.indexOf("endDate");
-            int enddate = out.indexOf("members");
-            String ldate = out.substring(indexend + 10, enddate - 3);
-            dates.add(fdate + "   to   " + ldate);
-
+            int dindex = out.indexOf("title");
+            int dindex_end = out.indexOf("}");
+            if(dindex + 8 < dindex_end-1) {
+                System.out.println(out.substring(dindex + 8, dindex_end - 1));
+                titles.add(out.substring(dindex + 8, dindex_end - 1));
+                int rindex = out.indexOf("award");
+                int rindex_end = out.indexOf("beginDate");
+                String sub = out.substring(rindex, rindex_end);
+                int num = Integer.parseInt(sub.replaceAll("[\\D]", ""));
+                rewards.add(" $" + Integer.toString(num));
+                int indexrew = out.indexOf("beginDate");
+                int end = out.indexOf("catagories");
+                String fdate = out.substring(indexrew + 12, end - 3);
+                int indexend = out.indexOf("endDate");
+                int enddate = out.indexOf("members");
+                String ldate = out.substring(indexend + 10, enddate - 3);
+                dates.add(fdate + "   to   " + ldate);
+            }
             return out;
         }
     }
@@ -227,7 +224,7 @@ public class AppliedProject extends AppCompatActivity {
         protected void onPreExecute() {
 
             super.onPreExecute();
-            progressDialog = new ProgressDialog(AppliedProject.this);
+            progressDialog = new ProgressDialog(PostedProject.this);
             progressDialog.setMessage("loading data...");
             progressDialog.show();
         }
@@ -284,4 +281,5 @@ public class AppliedProject extends AppCompatActivity {
             return out;
         }
     }
+
 }

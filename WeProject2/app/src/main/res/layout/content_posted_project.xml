@@ -5,11 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.shuangke.weproject2.AppliedProject"
-    tools:showIn="@layout/activity_applied_project">
+    tools:context="com.example.shuangke.weproject2.PostedProject"
+    tools:showIn="@layout/activity_posted_project">
 
+    <include
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        layout="@layout/toolbar_layout"></include>
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="85dp" />
+
+
 </RelativeLayout>
