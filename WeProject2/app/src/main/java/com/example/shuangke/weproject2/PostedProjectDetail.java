@@ -55,12 +55,17 @@ public class PostedProjectDetail extends AppCompatActivity {
     private TextView mem;
     private String joinlist;
     private DatabaseReference ref;
+    private String applist;
+    private DatabaseReference newm;
+    private DatabaseReference changeapp;
+    int flag;
+    int flag2;
 
     EditText input;
     TextView addMember;
     String addUserList;// 这个是post project 的人输入的想要加的的用户信息
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_posted_project_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -83,7 +88,58 @@ public class PostedProjectDetail extends AppCompatActivity {
                 drf.setValue(members + addUserList + ";");
                 Toast.makeText(getApplicationContext(),"add User: " + addUserList,Toast.LENGTH_LONG).show();
                 mem.setText(members + addUserList + ";");
-                String newmmem = addUserList + ";";
+                String newmmem = addUserList;
+                newmmem = newmmem.replace("@","");
+                newmmem = newmmem.replace(".","");
+                System.out.print(newmmem + "---------------------------------------------");
+                newm = FirebaseDatabase.getInstance().getReference().child("user").child(newmmem).child("joinedproject");
+                flag = 1;
+                newm.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (flag == 1) {
+                            newm.setValue(dataSnapshot.getValue(String.class) + pid + ";");
+                            flag = 0;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+                changeapp = FirebaseDatabase.getInstance().getReference().child("user").child(newmmem).child("appliedProject");
+                flag2 = 1;
+                changeapp.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (flag2 == 1) {
+                            changeapp.setValue(dataSnapshot.getValue(String.class).replace(pid + ";",""));
+                            flag2 = 0;
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+//                DatabaseReference appliedlist = FirebaseDatabase.getInstance().getReference().child("user").child(newmmem).child("appliedProject");
+//
+//                appliedlist.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        applist = dataSnapshot.getValue(String.class);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//                });
+//                newm.setValue(joinlist + pid + ";");
+
+
                 //ref.setValue(joinlist + pid + ";");
 
 

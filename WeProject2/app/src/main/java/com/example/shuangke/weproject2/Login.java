@@ -25,7 +25,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        email = (EditText) findViewById(R.id.username);
+        email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getCurrentUser()!= null) {
@@ -37,6 +37,10 @@ public class Login extends AppCompatActivity {
     }
     public void gotoHomePage(View view){
         signIn();
+    }
+    public void gotoSignUp(View view){
+        Intent intent = new Intent(Login.this, SignUp.class);
+        startActivity(intent);
     }
 
     private void signIn() {

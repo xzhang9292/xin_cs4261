@@ -200,9 +200,9 @@ public class AppliedProject extends AppCompatActivity {
                     bufferedReader.close();
                 }
             }
-            int dindex = out.indexOf("description");
-            int dindex_end = out.indexOf("endDate");
-            titles.add(out.substring(dindex + 14,dindex_end-3));
+            int dindex = out.indexOf("title");
+            int dindex_end = out.indexOf("}");
+            titles.add(out.substring(dindex + 8,dindex_end-1));
             int rindex = out.indexOf("award");
             int rindex_end = out.indexOf("beginDate");
             String sub = out.substring(rindex,rindex_end);
